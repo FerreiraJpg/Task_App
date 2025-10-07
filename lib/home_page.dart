@@ -29,7 +29,6 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: Text("Tarefas", style: TextStyle(color: Colors.white)),
           backgroundColor: appBarColor,
-          elevation: 2,
           actions: [
             ElevatedButton(
               onPressed: colorChange,
@@ -189,25 +188,6 @@ class _HomePageState extends State<HomePage> {
               child: Icon(Icons.add, color: Colors.white),
             ),
             SizedBox(width: 12),
-            PopupMenuButton(
-  itemBuilder: (BuildContext context) {
-    return [
-      PopupMenuItem(
-        child: Text('Opção 1'),
-        
-          
-      ),
-      PopupMenuItem(
-        child: TextButton(onPressed: (){
-          setState(() {
-            tarefas.clear();
-          });
-        }, child: Icon(Icons.delete, color: Colors.red, )),
-      ),
-    ];
-  },
-  icon: Icon(Icons.delete, color: Colors.red,), // Ou o seu FloatingActionButton customizado
-            ),
           ],
         ),
       ),
@@ -238,9 +218,9 @@ class _HomePageState extends State<HomePage> {
       ),
     );
     setState(() {
-      {
-        tarefas.add(task);
-      }
+     if (task != null){
+  tarefas.add(task);
+     }
     });
   }
 
