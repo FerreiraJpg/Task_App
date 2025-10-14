@@ -68,58 +68,60 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     )
-                  : ListView(
-                      children: [
-                        for (var tarefa in tarefas)
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 8.0,
-                              horizontal: 16,
-                            ),
-                            child: Card(
-                              child: ListTile(
-                                onTap: () => taskDetails(tarefa),
-                                title: Text(
-                                  tarefa.nomeTask,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                subtitle: Text(
-                                  tarefa.descricaoTask,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                leading: Text(dateNow),
-                                trailing: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    IconButton(
-                                      icon: Icon(
-                                        Icons.delete,
-                                        color: Colors.red,
+                  : SizedBox(
+                      child: ListView(
+                        children: [
+                          for (var tarefa in tarefas)
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 8.0,
+                                horizontal: 16,
+                              ),
+                              child: Card(
+                                child: ListTile(
+                                  onTap: () => taskDetails(tarefa),
+                                  title: Text(
+                                    tarefa.nomeTask,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  subtitle: Text(
+                                    tarefa.descricaoTask,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  leading: Text(dateNow),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      IconButton(
+                                        icon: Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            tarefas.remove(tarefa);
+                                          });
+                                        },
                                       ),
-                                      onPressed: () {
-                                        setState(() {
-                                          tarefas.remove(tarefa);
-                                        });
-                                      },
-                                    ),
-                                    IconButton(
-                                      icon: Icon(Icons.done_all),
-                                      color: Colors.green,
-                                      onPressed: () {
-                                        setState(() {
-                                          tarefas.remove(tarefa);
-                                          finalizados.add(tarefa);
-                                        });
-                                      },
-                                    ),
-                                  ],
+                                      IconButton(
+                                        icon: Icon(Icons.done_all),
+                                        color: Colors.green,
+                                        onPressed: () {
+                                          setState(() {
+                                            tarefas.remove(tarefa);
+                                            finalizados.add(tarefa);
+                                          });
+                                        },
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                      ],
+                        ],
+                      ),
                     ),
             ),
             Center(
@@ -135,46 +137,48 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     )
-                  : ListView(
-                      children: [
-                        for (var finalizado in finalizados)
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 8.0,
-                              horizontal: 16,
-                            ),
-                            child: Card(
-                              child: ListTile(
-                                onTap: () => taskDetails(finalizado),
-                                title: Text(
-                                  finalizado.nomeTask,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                subtitle: Text(
-                                  finalizado.descricaoTask,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                leading: Text(dateNow),
-                                trailing: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    IconButton(
-                                      icon: Icon(
-                                        Icons.delete,
-                                        color: Colors.red,
+                  : SizedBox(
+                      child: ListView(
+                        children: [
+                          for (var finalizado in finalizados)
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 8.0,
+                                horizontal: 16,
+                              ),
+                              child: Card(
+                                child: ListTile(
+                                  onTap: () => taskDetails(finalizado),
+                                  title: Text(
+                                    finalizado.nomeTask,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  subtitle: Text(
+                                    finalizado.descricaoTask,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  leading: Text(dateNow),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      IconButton(
+                                        icon: Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        ),
+                                        onPressed: () => setState(() {
+                                          finalizados.remove(finalizado);
+                                        }),
                                       ),
-                                      onPressed: () => setState(() {
-                                        finalizados.remove(finalizado);
-                                      }),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                      ],
+                        ],
+                      ),
                     ),
             ),
           ],
@@ -217,7 +221,7 @@ class _HomePageState extends State<HomePage> {
         child: SizedBox(width: 400, height: 300, child: OtherPage()),
       ),
     );
-    
+
     if (task != null) {
       setState(() {
         tarefas.add(task);
@@ -364,15 +368,15 @@ class _OtherPage extends State<OtherPage> {
     String descricao = taskDescriptionController.text;
     List<String> descricaoList = descricao.split(" ");
     String descricaoQuebrada = descricaoList.join("\n");
-    
+
     Tarefa task = Tarefa(nome, descricaoQuebrada);
     Navigator.pop(context, task);
   }
 }
+
 class Tarefa {
   String nomeTask;
   String descricaoTask;
 
   Tarefa(this.nomeTask, this.descricaoTask);
 }
-
