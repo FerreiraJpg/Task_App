@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 subtitle: Text(
                                   tarefa.descricaoTask,
-                                  maxLines: 1,
+                                  maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 leading: Text(dateNow),
@@ -153,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 subtitle: Text(
                                   finalizado.descricaoTask,
-                                  maxLines: 1,
+                                  maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                 ),
                                 leading: Text(dateNow),
@@ -217,11 +217,12 @@ class _HomePageState extends State<HomePage> {
         child: SizedBox(width: 400, height: 300, child: OtherPage()),
       ),
     );
-    setState(() {
-     if (task != null){
-  tarefas.add(task);
-     }
-    });
+    
+    if (task != null) {
+      setState(() {
+        tarefas.add(task);
+      });
+    }
   }
 
   void taskDetails(Tarefa tarefa) {
@@ -246,11 +247,18 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(height: 23),
-                Text(
-                  tarefa.descricaoTask.isNotEmpty
-                      ? tarefa.descricaoTask
-                      : 'Sem descrição',
-                  style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    tarefa.descricaoTask.isNotEmpty
+                        ? tarefa.descricaoTask
+                        : 'Sem descrição',
+                    style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+                  ),
                 ),
                 SizedBox(height: 12),
                 Align(
@@ -330,6 +338,10 @@ class _OtherPage extends State<OtherPage> {
                   onPressed: () => onAddTask(),
                   child: Text("Adicionar"),
                 ),
+                TextButton(
+                  onPressed: () => onAddList(),
+                  child: Text("Adicionar Lista"),
+                ),
               ],
             ),
           ],
@@ -346,11 +358,21 @@ class _OtherPage extends State<OtherPage> {
     //  taskNameController.clear();
     // taskDescriptionController.clear();
   }
-}
 
+  void onAddList() {
+    String nome = taskNameController.text;
+    String descricao = taskDescriptionController.text;
+    List<String> descricaoList = descricao.split(" ");
+    String descricaoQuebrada = descricaoList.join("\n");
+    
+    Tarefa task = Tarefa(nome, descricaoQuebrada);
+    Navigator.pop(context, task);
+  }
+}
 class Tarefa {
   String nomeTask;
   String descricaoTask;
 
   Tarefa(this.nomeTask, this.descricaoTask);
 }
+
