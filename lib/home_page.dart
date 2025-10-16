@@ -26,6 +26,12 @@ class _HomePageState extends State<HomePage> {
       length: 2,
       child: Scaffold(
         backgroundColor: backgroundColor,
+        drawer:Scaffold(
+          appBar: AppBar(
+            title: Text("Imagem Colocada"),
+          ),
+          body: Image.network('https://www.pokemon.com/static-assets/content-assets/cms2/img/video-games/_tiles/pokemon-legends-z-a/launch/pokemon-legends-z-a-875-en.png'),
+        ),
         appBar: AppBar(
           title: Text("Tarefas", style: TextStyle(color: Colors.white)),
           backgroundColor: appBarColor,
