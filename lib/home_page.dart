@@ -31,6 +31,10 @@ class _HomePageState extends State<HomePage> {
             title: Text("Imagem Colocada"),
           ),
           body: Image.network('https://www.pokemon.com/static-assets/content-assets/cms2/img/video-games/_tiles/pokemon-legends-z-a/launch/pokemon-legends-z-a-875-en.png'),
+          floatingActionButton: FloatingActionButton(onPressed: () => goBack(),
+           child: Icon(Icons.close, color: Colors.red,),
+           backgroundColor: Colors.white,
+          ),
         ),
         appBar: AppBar(
           title: Text("Tarefas", style: TextStyle(color: Colors.white)),
@@ -214,6 +218,11 @@ class _HomePageState extends State<HomePage> {
         backgroundColor = const Color(0xFFBBDEFB);
         appBarColor = const Color(0xFF1565C0);
       }
+    });
+  }
+  void goBack(){
+    setState(() {
+      Navigator.pop(context);
     });
   }
 
