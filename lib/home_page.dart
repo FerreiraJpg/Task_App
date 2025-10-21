@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool isOn = false;
   Color backgroundColor = const Color(0xFFBBDEFB);
-  Color appBarColor = const Color(0xFF1565C0);
+  Color appBarColor = const Color.fromARGB(255, 136, 173, 216);
 
   List<Tarefa> tarefas = [];
   List<Tarefa> finalizados = [];
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xFF0D47A1),
+                          color: Color.fromARGB(255, 127, 169, 233),
                           letterSpacing: 0.2,
                         ),
                       ),
@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                                       IconButton(
                                         icon: Icon(
                                           Icons.delete,
-                                          color: Colors.red,
+                                          color: const Color.fromARGB(255, 241, 166, 161),
                                         ),
                                         onPressed: () {
                                           setState(() {
@@ -117,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       IconButton(
                                         icon: Icon(Icons.done_all),
-                                        color: Colors.green,
+                                        color: const Color.fromARGB(255, 150, 218, 152),
                                         onPressed: () {
                                           setState(() {
                                             tarefas.remove(tarefa);
@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xFF0D47A1),
+                          color: Color.fromARGB(255, 139, 178, 236),
                           letterSpacing: 0.2,
                         ),
                       ),
