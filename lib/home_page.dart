@@ -28,6 +28,10 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: backgroundColor,
         drawer:Scaffold(
           appBar: AppBar(
+            actions: [
+              FloatingActionButton(onPressed: ()=> goBack(),
+              child: Icon(Icons.draw),)
+            ],
             title: Text("Imagem Colocada"),
           ),
           body: Image.network('https://www.pokemon.com/static-assets/content-assets/cms2/img/video-games/_tiles/pokemon-legends-z-a/launch/pokemon-legends-z-a-875-en.png'),
