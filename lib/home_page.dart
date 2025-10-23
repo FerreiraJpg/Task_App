@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool isOn = false;
   Color backgroundColor = const Color(0xFFBBDEFB);
-  Color appBarColor = const Color.fromARGB(255, 136, 173, 216);
+  Color appBarColor = const Color(0xFF1565C0);
 
   List<Tarefa> tarefas = [];
   List<Tarefa> finalizados = [];
@@ -28,10 +28,6 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: backgroundColor,
         drawer:Scaffold(
           appBar: AppBar(
-            actions: [
-              FloatingActionButton(onPressed: ()=> goBack(),
-              child: Icon(Icons.draw),)
-            ],
             title: Text("Imagem Colocada"),
           ),
           body: Image.network('https://www.pokemon.com/static-assets/content-assets/cms2/img/video-games/_tiles/pokemon-legends-z-a/launch/pokemon-legends-z-a-875-en.png'),
@@ -77,7 +73,7 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
-                          color: Color.fromARGB(255, 127, 169, 233),
+                          color: Color(0xFF0D47A1),
                           letterSpacing: 0.2,
                         ),
                       ),
@@ -111,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                                       IconButton(
                                         icon: Icon(
                                           Icons.delete,
-                                          color: const Color.fromARGB(255, 241, 166, 161),
+                                          color: Colors.red,
                                         ),
                                         onPressed: () {
                                           setState(() {
@@ -121,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       IconButton(
                                         icon: Icon(Icons.done_all),
-                                        color: const Color.fromARGB(255, 150, 218, 152),
+                                        color: Colors.green,
                                         onPressed: () {
                                           setState(() {
                                             tarefas.remove(tarefa);
@@ -146,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w600,
-                          color: Color.fromARGB(255, 139, 178, 236),
+                          color: Color(0xFF0D47A1),
                           letterSpacing: 0.2,
                         ),
                       ),
