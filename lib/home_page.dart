@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage> {
           floatingActionButton: FloatingActionButton(onPressed: () => goBack(),
            child: Icon(Icons.close, color: Colors.red,),
            backgroundColor: Colors.white,
+           
           ),
         ),
         appBar: AppBar(
