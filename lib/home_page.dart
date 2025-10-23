@@ -38,8 +38,8 @@ class _HomePageState extends State<HomePage> {
           floatingActionButton: FloatingActionButton(onPressed: () => goBack(),
            child: Icon(Icons.close, color: Colors.red,),
            backgroundColor: Colors.white,
-           
           ),
+          bottomNavigationBar: Text(dateNow),
         ),
         appBar: AppBar(
           title: Text("Tarefas", style: TextStyle(color: Colors.white)),
