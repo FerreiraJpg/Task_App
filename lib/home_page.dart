@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+ 
+ 
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final String? userName;
+  const HomePage({super.key, this.userName});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -24,23 +27,31 @@ class _HomePageState extends State<HomePage> {
 
     return DefaultTabController(
       length: 2,
-      child: Scaffold(
-        backgroundColor: backgroundColor,
-        drawer:Scaffold(
-          appBar: AppBar(
-            actions: [
-              FloatingActionButton(onPressed: ()=> goBack(),
-              child: Icon(Icons.draw),)
-            ],
-            title: Text("Imagem Colocada"),
+        child: Scaffold(
+          backgroundColor: backgroundColor,
+          drawer: Drawer(
+            child: SafeArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  DrawerHeader(
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Text(
+                        widget.userName ?? 'Usuário',
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(Icons.close),
+                    title: Text('Fechar'),
+                    onTap: () => Navigator.of(context).pop(),
+                  ),
+                ],
+              ),
+            ),
           ),
-          body: Image.network('https://www.pokemon.com/static-assets/content-assets/cms2/img/video-games/_tiles/pokemon-legends-z-a/launch/pokemon-legends-z-a-875-en.png'),
-          floatingActionButton: FloatingActionButton(onPressed: () => goBack(),
-           child: Icon(Icons.close, color: Colors.red,),
-           backgroundColor: Colors.white,
-          ),
-          bottomNavigationBar: Text(dateNow),
-        ),
         appBar: AppBar(
           title: Text("Tarefas", style: TextStyle(color: Colors.white)),
           backgroundColor: appBarColor,
@@ -58,7 +69,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ],
-          bottom: const TabBar(
+          bottom: TabBar(
             labelColor: Colors.white,
             unselectedLabelColor: Colors.white70,
             indicatorColor: Colors.white,
@@ -112,7 +123,12 @@ class _HomePageState extends State<HomePage> {
                                       IconButton(
                                         icon: Icon(
                                           Icons.delete,
-                                          color: const Color.fromARGB(255, 241, 166, 161),
+                                          color: const Color.fromARGB(
+                                            255,
+                                            241,
+                                            166,
+                                            161,
+                                          ),
                                         ),
                                         onPressed: () {
                                           setState(() {
@@ -122,7 +138,12 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       IconButton(
                                         icon: Icon(Icons.done_all),
-                                        color: const Color.fromARGB(255, 150, 218, 152),
+                                        color: const Color.fromARGB(
+                                          255,
+                                          150,
+                                          218,
+                                          152,
+                                        ),
                                         onPressed: () {
                                           setState(() {
                                             tarefas.remove(tarefa);
@@ -225,7 +246,8 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
-  void goBack(){
+
+  void goBack() {
     setState(() {
       Navigator.pop(context);
     });

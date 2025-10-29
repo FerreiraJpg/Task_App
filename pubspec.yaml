@@ -1,5 +1,5 @@
 name: flutter_application_1
-description: "A new Flutter project."
+description: "Aplicativo de tarefas"
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -13,6 +13,10 @@ dependencies:
   cupertino_icons: ^1.0.8
   intl: ^0.20.2
   timezone: ^0.10.1
+  google_fonts: ^6.3.2
+  
+assets:
+- google_fonts/
 
 dev_dependencies:
   flutter_test:
