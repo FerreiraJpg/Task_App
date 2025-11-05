@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/home_page.dart';
- 
-
-
 
 void main() async {
-runApp(const MyApp());
+  runApp(const MyApp());
 }
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
- Color backgroundColor = const Color(0xFFBBDEFB);
-  Color appBarColor = const Color(0xFF1565C0);
-  final nameController = TextEditingController();
-  final dataController = TextEditingController();
+
+Color backgroundColor = const Color(0xFFBBDEFB);
+Color appBarColor = const Color(0xFF1565C0);
+final nameController = TextEditingController();
+final dataController = TextEditingController();
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -25,63 +24,67 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: navigatorKey,
-      home: Scaffold( 
-      body:Card(
-      margin: EdgeInsets.zero,
-      elevation: 10,
-      child: Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: const Color(0xFF1565C0),
-          title: Text(
-            "Login",
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
-        body: Column(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-              child: TextField(
-                controller: nameController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                  ),
-                  hintText: "Nome",
-                ),
+      home: Scaffold(
+        body: Card(
+          margin: EdgeInsets.zero,
+          elevation: 10,
+          child: Scaffold(
+            appBar: AppBar(
+              elevation: 0,
+              backgroundColor: Color(0xFF1565C0),
+              title: Text(
+                "Login",
+                textAlign: TextAlign.right,
+                style: TextStyle(color: Colors.white),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-              child: TextField(
-                controller: dataController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                  ),
-                  hintText: "Data de nascimento",
-                ),
-              ),
-            ),
-            SizedBox(height: 12),
-            Row(
+            body: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  onPressed: () => login(context),
-                  child: Text("Entrar"),
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 16),
+                  child: TextFormField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.person),
+                      border: OutlineInputBorder(),
+                      hintText: "Nome",
+                    ),
+                    validator: (String? nameController) {
+                      if (nameController == null) {}
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 16),
+                  child: TextFormField(
+                    controller: dataController,
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.lock),
+                      border: OutlineInputBorder(),
+                      hintText: "Data de nascimento",
+                    ),
+                  ),
+                ),
+                SizedBox(height: 12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TextButton(
+                      onPressed: () => login(context),
+                      child: Text("Entrar"),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
+          ),
         ),
-      ),
-    ),
       ),
     );
   }
-    void changePage() async {
+
+  void changePage() async {
     final user = await showDialog<dynamic>(
       context: context,
       builder: (context) => Dialog(
@@ -95,8 +98,6 @@ class _MyAppState extends State<MyApp> {
       });
     }
   }
-  
-
 
   void login(BuildContext innerContext) {
     String nome = nameController.text;
@@ -104,12 +105,12 @@ class _MyAppState extends State<MyApp> {
     User user = User(nome, dataNascimento);
     navigatorKey.currentState?.pushReplacement(
       MaterialPageRoute(
-        builder: (_) => HomePage(userName: user.nome),
+        builder: (_) =>
+            HomePage(userName: user.nome, userDate: user.dataNascimento),
       ),
     );
   }
 }
-
 
 class User {
   String nome;

@@ -5,7 +5,8 @@ import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   final String? userName;
-  const HomePage({super.key, this.userName});
+  final String? userDate;
+  const HomePage({super.key, this.userName, this.userDate});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -30,19 +31,18 @@ class _HomePageState extends State<HomePage> {
         child: Scaffold(
           backgroundColor: backgroundColor,
           drawer: Drawer(
-            child: SafeArea(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   DrawerHeader(
                     child: Align(
-                      alignment: Alignment.bottomLeft,
+                      alignment: Alignment.topLeft,
                       child: Text(
-                        widget.userName ?? 'Usuário',
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        "${widget.userName ?? 'User'} ${widget.userDate ?? 'Date'}", 
+                         style: TextStyle(color: Colors.blue, fontSize: 18),
                       ),
                     ),
                   ),
+                  Padding(padding: EdgeInsetsGeometry.directional(bottom: 630,)),
                   ListTile(
                     leading: Icon(Icons.close),
                     title: Text('Fechar'),
@@ -50,7 +50,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-            ),
           ),
         appBar: AppBar(
           title: Text("Tarefas", style: TextStyle(color: Colors.white)),
